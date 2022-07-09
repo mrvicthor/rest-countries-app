@@ -1,52 +1,83 @@
-import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Header from "../../components/Header";
-import { Country } from "./../../model";
-import useAutocomplete from "./../../components/useAutocomplete";
+import useAutocomplete from "../../components/useAutocomplete";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { ThemeContext } from "./../../components/Layout";
+import Link from "next/link";
 
-interface Props {
-  toggleTheme: boolean;
-  // data: Country[];
-}
-
-const Countries = ({ toggleTheme }: Props) => {
+const Countries = () => {
+  const { lightTheme } = useContext(ThemeContext);
   const [countries, setCountries] = useState<any[]>();
   const [input, setInput] = useState<string>("");
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedRegion, setSelectedRegion] = useState<string>("");
+
   const query = useAutocomplete(input);
+  const router = useRouter();
 
   useEffect(() => {
     if (!input) {
       const fetchData = async () => {
-        const res = await fetch("https://restcountries.com/v3.1/all");
+        const res = await fetch("https://restcountries.com/v2/all");
         const data = await res.json();
         setCountries(data);
-        console.log(data);
       };
       fetchData();
     } else {
       const getCountry = async () => {
-        const res = await fetch(`https://restcountries.com/v3.1/name/${query}`);
+        const res = await fetch(`https://restcountries.com/v2/name/${query}`);
         const data = await res.json();
         setCountries(data);
-        console.log(data);
       };
       getCountry();
     }
   }, [query]);
 
-  // useEffect(() => {}, []);
+  const handleSelect = (item: string) => {
+    setSelectedRegion(() => item);
+  };
 
+  let regions: any = [
+    { id: 1, value: "Africa" },
+    { id: 2, value: "America" },
+    { id: 3, value: "Asia" },
+    { id: 4, value: "Europe" },
+    { id: 5, value: "Oceania" },
+  ];
+
+  let filtered =
+    selectedRegion === "Africa"
+      ? countries?.filter((country) => country.region === "Africa")
+      : selectedRegion === "America"
+      ? countries?.filter((country) => country.region === "Americas")
+      : selectedRegion === "Asia"
+      ? countries?.filter((country) => country.region === "Asia")
+      : selectedRegion === "Europe"
+      ? countries?.filter((country) => country.region === "Europe")
+      : selectedRegion === "Oceania"
+      ? countries?.filter((country) => country.region === "Oceania")
+      : countries;
   return (
     <>
-      <Header toggleTheme={toggleTheme} input={input} setInput={setInput} />
+      <Header
+        toggleTheme={lightTheme}
+        input={input}
+        setInput={setInput}
+        regions={regions}
+        onSelect={handleSelect}
+      />
       <div className="px-12 space-y-10 md:grid sm:grid-cols-2 sm:gap-10 sm:space-y-0 lg:grid-cols-4">
-        {countries?.map((country) => (
+        {filtered?.map((country, index) => (
           <div
-            key={country.tId}
-            className={`${
-              toggleTheme ? "bg-[#2b3945]" : "bg-white"
+            key={index}
+            onClick={() =>
+              router.push({
+                pathname: "/countries/[countrytld]",
+                query: { countrytld: country.alpha2Code },
+              })
+            }
+            className={` cursor-pointer ${
+              !lightTheme ? "bg-[#2b3945]" : "bg-white"
             } rounded-md`}
           >
             <img
@@ -56,33 +87,39 @@ const Countries = ({ toggleTheme }: Props) => {
             <div className="py-6 space-y-4 px-6">
               <h2
                 className={`${
-                  toggleTheme ? "text-white" : "text-[#111517]"
+                  !lightTheme ? "text-white" : "text-[#111517]"
                 } font-extrabold`}
               >
-                {country.name.common}
+                {country.name}
               </h2>
               <div className="pb-3">
                 <h3
                   className={`${
-                    toggleTheme ? "text-white" : "text-[#111517]"
+                    !lightTheme ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
                   Population:{" "}
-                  <span className="font-thin">{country.population}</span>
+                  <span className="font-thin opacity-70">
+                    {country.population}
+                  </span>
                 </h3>
                 <h3
                   className={`${
-                    toggleTheme ? "text-white" : "text-[#111517]"
+                    !lightTheme ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
-                  Region: <span className="font-thin">{country.region}</span>
+                  Region:{" "}
+                  <span className="font-thin opacity-70">{country.region}</span>
                 </h3>
                 <h3
                   className={`${
-                    toggleTheme ? "text-white" : "text-[#111517]"
+                    !lightTheme ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
-                  Capital: <span className="font-thin">{country.capital}</span>
+                  Capital:{" "}
+                  <span className="font-thin opacity-70">
+                    {country.capital}
+                  </span>
                 </h3>
               </div>
             </div>
@@ -94,14 +131,3 @@ const Countries = ({ toggleTheme }: Props) => {
 };
 
 export default Countries;
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const res = await fetch("https://restcountries.com/v3.1/all");
-//   const data = await res.json();
-//   console.log(data);
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };
