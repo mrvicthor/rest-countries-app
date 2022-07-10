@@ -16,7 +16,7 @@ const ListGroup = ({ regions, toggleTheme, onSelect }: Props) => {
       {regions.map((region) => (
         <li
           key={region.id}
-          className={`cursor-pointer`}
+          className={`dropdownMenu cursor-pointer`}
           onClick={() => {
             onSelect(region.value);
             console.log(region.value);
