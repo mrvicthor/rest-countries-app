@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/mrvicthor/rest-countries-app]
+- Live Site URL: [https://rest-countries-app-snowy.vercel.app/]
 
 ## My process
 
@@ -51,7 +51,7 @@ Users should be able to:
 
 ### What I learned
 
-Working on this challenge further enhanced my knowledge on typescript, dynamic routing and creating custom layout in nextjs
+Working on this challenge further enhanced my knowledge on typescript, dynamic routing and creating custom layout in nextjs. I am dtriving to improve my understanding of typescript.
 
 
 ### Continued development
