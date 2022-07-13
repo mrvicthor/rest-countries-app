@@ -7,7 +7,9 @@ interface Props {
   toggleTheme: boolean;
   input: string;
   onSelect: (item: string) => void;
+  showRegion: boolean;
   regions: any[];
+  setShowRegion: React.Dispatch<React.SetStateAction<boolean>>;
   setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -16,10 +18,10 @@ const Countries: React.FC<Props> = ({
   input,
   setInput,
   onSelect,
+  showRegion,
+  setShowRegion,
   regions,
 }) => {
-  const [showRegion, setShowRegion] = useState<boolean>(false);
-
   return (
     <>
       <div className="py-6 px-4 md:px-12">
@@ -66,6 +68,7 @@ const Countries: React.FC<Props> = ({
                 regions={regions}
                 toggleTheme={toggleTheme}
                 onSelect={onSelect}
+                setShowRegion={setShowRegion}
               />
             )}
           </div>

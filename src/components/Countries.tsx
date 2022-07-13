@@ -11,6 +11,7 @@ const Countries = () => {
   const [countries, setCountries] = useState<any[]>();
   const [input, setInput] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [showRegion, setShowRegion] = useState<boolean>(false);
 
   const query = useAutocomplete(input);
   const router = useRouter();
@@ -71,6 +72,8 @@ const Countries = () => {
         toggleTheme={lightTheme}
         input={input}
         setInput={setInput}
+        showRegion={showRegion}
+        setShowRegion={setShowRegion}
         regions={regions}
         onSelect={handleSelect}
       />

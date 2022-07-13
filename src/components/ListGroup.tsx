@@ -2,9 +2,15 @@ interface Props {
   toggleTheme: boolean;
   regions: any[];
   onSelect: (item: string) => void;
+  setShowRegion: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ListGroup = ({ regions, toggleTheme, onSelect }: Props) => {
+const ListGroup = ({
+  regions,
+  toggleTheme,
+  onSelect,
+  setShowRegion,
+}: Props) => {
   return (
     <ul
       className={`absolute w-[200px] z-[10] ${
@@ -19,7 +25,7 @@ const ListGroup = ({ regions, toggleTheme, onSelect }: Props) => {
           className={`dropdownMenu cursor-pointer`}
           onClick={() => {
             onSelect(region.value);
-            console.log(region.value);
+            setShowRegion(false);
           }}
         >
           {region.value}
