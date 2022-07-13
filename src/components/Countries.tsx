@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import useAutocomplete from "../../components/useAutocomplete";
+import Header from "./Header";
+import useAutocomplete from "./useAutocomplete";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { ThemeContext } from "./../../components/Layout";
-import Link from "next/link";
+import { ThemeContext } from "./Layout";
 
 const Countries = () => {
   const { lightTheme } = useContext(ThemeContext);

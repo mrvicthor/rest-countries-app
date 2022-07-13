@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Countries from "./countries";
+import Countries from "../components/Countries";
 import { useContext } from "react";
 import { ThemeContext } from "./../components/Layout";
 

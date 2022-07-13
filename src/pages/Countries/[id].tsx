@@ -1,6 +1,5 @@
-import { Country, GetCountryResult } from "../../model";
 import { useContext } from "react";
-import { ThemeContext } from "./../../components/Layout";
+import { ThemeContext } from "../../components/Layout";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Border from "../../components/Border";
