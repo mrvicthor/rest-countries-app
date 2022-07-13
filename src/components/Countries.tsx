@@ -71,7 +71,7 @@ const Countries = () => {
             key={index}
             onClick={() =>
               router.push({
-                pathname: "/countries/[countrytld]",
+                pathname: "/Countries/[countrytld]",
                 query: { countrytld: country.alpha2Code },
               })
             }
