@@ -22,7 +22,6 @@ const DetailsPage = ({ country }: { country: any }) => {
     languages,
   } = country;
 
-  const {} = currencies;
   let lastLang: any = languages[languages.length - 1];
   const closeBorders = borders?.slice(0, 3);
 
