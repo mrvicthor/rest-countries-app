@@ -1,6 +1,5 @@
-import { Country, GetCountryResult } from "../../model";
 import { useContext } from "react";
-import { ThemeContext } from "./../../components/Layout";
+import { ThemeContext } from "../../components/Layout";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Border from "../../components/Border";
@@ -22,9 +21,8 @@ const DetailsPage = ({ country }: { country: any }) => {
     languages,
   } = country;
 
-  const {} = currencies;
   let lastLang: any = languages[languages.length - 1];
-  const closeBorders = borders.slice(0, 3);
+  const closeBorders = borders?.slice(0, 3);
 
   return (
     <>
@@ -160,7 +158,7 @@ const DetailsPage = ({ country }: { country: any }) => {
                       !lightTheme ? "text-white" : "text-[#111517]"
                     } opacity-70`}
                   >
-                    {currencies[0].name}
+                    {currencies && currencies[0].name}
                   </span>
                 </p>
                 <p
@@ -169,7 +167,7 @@ const DetailsPage = ({ country }: { country: any }) => {
                   }`}
                 >
                   Languages:{" "}
-                  {languages.map((language: any, index: number) => (
+                  {languages?.map((language: any, index: number) => (
                     <span
                       key={index}
                       className={`font-light ${
@@ -193,7 +191,7 @@ const DetailsPage = ({ country }: { country: any }) => {
                 Border Countries:
               </h3>
               <ul className={` flex gap-3 pt-4 overflow-hidden`}>
-                {closeBorders.map((b: any, index: number) => (
+                {closeBorders?.map((b: any, index: number) => (
                   <Border border={b} key={index} />
                 ))}
               </ul>
@@ -210,7 +208,7 @@ export async function getStaticPaths() {
   const results = await res.json();
 
   return {
-    paths: results.map((country: any) => {
+    paths: results?.map((country: any) => {
       return { params: { id: String(country.alpha2Code) } };
     }),
     fallback: false,
