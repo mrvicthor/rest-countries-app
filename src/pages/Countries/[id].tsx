@@ -159,7 +159,7 @@ const DetailsPage = ({ country }: { country: any }) => {
                       !lightTheme ? "text-white" : "text-[#111517]"
                     } opacity-70`}
                   >
-                    {currencies[0].name}
+                    {currencies[0]?.name}
                   </span>
                 </p>
                 <p
