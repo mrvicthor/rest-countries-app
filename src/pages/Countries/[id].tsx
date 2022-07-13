@@ -1,4 +1,3 @@
-import { Country, GetCountryResult } from "../../model";
 import { useContext } from "react";
 import { ThemeContext } from "../../components/Layout";
 import Link from "next/link";
