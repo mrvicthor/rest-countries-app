@@ -215,6 +215,8 @@ export async function getStaticPaths() {
   };
 }
 
+
+
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const res = await fetch(`https://restcountries.com/v2/alpha/${params.id}`);
 
