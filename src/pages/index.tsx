@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <main
         className={`${
           !lightTheme ? "bg-[#202c37]" : "bg-[#fafafa]"
-        } h-[88.7vh] pb-12`}
+        } min-h-[88.7vh] pb-12`}
       >
         <Countries />
       </main>
