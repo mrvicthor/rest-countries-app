@@ -13,7 +13,7 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
   return (
     <nav
       className={`border-b ${
-        !lightTheme ? "border-b-[#141C2C]" : ""
+        !lightTheme ? "border-b-[#141C2C" : ""
       }  flex justify-between px-3 items-center py-6 ${
         !lightTheme ? "bg-[#2b3945]" : "bg-white"
       } md:px-12`}

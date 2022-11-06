@@ -8,7 +8,7 @@ const Countries = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const { lightTheme } = useContext(ThemeContext);
-  const [countries, setCountries] = useState<any[]>();
+  const [countries, setCountries] = useState<any[]>([]);
   const [input, setInput] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [showRegion, setShowRegion] = useState<boolean>(false);
@@ -17,30 +17,19 @@ const Countries = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!input) {
-      const fetchData = async () => {
-        const res = await fetch("https://restcountries.com/v2/all");
-        if (!res.ok) return setError(true);
-        setLoading(true);
-        const data = await res.json();
-        setLoading(false);
-        setError(false);
-        setCountries(data);
-      };
-      fetchData();
-    } else {
-      const getCountry = async () => {
-        const res = await fetch(`https://restcountries.com/v2/name/${query}`);
-        if (!res.ok) return setError(true);
-        setLoading(true);
-        const data = await res.json();
-        setLoading(false);
-        setError(false);
-        setCountries(data);
-      };
-      getCountry();
-    }
-  }, [query]);
+    const fetchData = async () => {
+      const res = await fetch("https://restcountries.com/v2/all");
+      if (!res.ok) return setError(true);
+      setLoading(true);
+      const data = await res.json();
+      setLoading(false);
+      setError(false);
+
+      setCountries((prevData) => [...prevData, ...data]);
+      console.log(countries);
+    };
+    fetchData();
+  }, []);
 
   const handleSelect = (item: string) => {
     setSelectedRegion(() => item);
@@ -54,7 +43,20 @@ const Countries = () => {
     { id: 5, value: "Oceania" },
   ];
 
-  let filtered =
+  useEffect(() => {
+    let filteredCountries = countries;
+    if (query) {
+      filteredCountries = filteredCountries.filter((country) =>
+        country.name.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setCountries(filteredCountries);
+      console.log(filteredCountries);
+    } else {
+      filteredCountries;
+    }
+  }, [query]);
+
+  let filteredCountries =
     selectedRegion === "Africa"
       ? countries?.filter((country) => country.region === "Africa")
       : selectedRegion === "America"
@@ -84,12 +86,12 @@ const Countries = () => {
             Oops!! Country does not exist, please double check
           </p>
         ) : (
-          filtered?.map((country, index) => (
+          filteredCountries?.map((country, index) => (
             <div
               key={index}
               onClick={() =>
                 router.push({
-                  pathname: "/countries/[countrytld]",
+                  pathname: "/country/[countrytld]",
                   query: { countrytld: country.alpha2Code },
                 })
               }

@@ -13,7 +13,7 @@ interface Props {
   setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Countries: React.FC<Props> = ({
+const Header: React.FC<Props> = ({
   toggleTheme,
   input,
   setInput,
@@ -78,4 +78,4 @@ const Countries: React.FC<Props> = ({
   );
 };
 
-export default Countries;
+export default Header;
