@@ -1,6 +1,5 @@
 import { FaSearch } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useState } from "react";
 import ListGroup from "./ListGroup";
 
 interface Props {
