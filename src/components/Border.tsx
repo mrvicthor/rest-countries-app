@@ -25,7 +25,7 @@ const Border = ({ border }: Props) => {
     <li
       onClick={() =>
         router.push({
-          pathname: "/countries/[countrytld]",
+          pathname: "/country/[countrytld]",
           query: { countrytld: selected },
         })
       }

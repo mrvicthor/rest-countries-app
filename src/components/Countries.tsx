@@ -12,7 +12,6 @@ const Countries = () => {
   const [input, setInput] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [showRegion, setShowRegion] = useState<boolean>(false);
-  const [notFound, setNotFound] = useState<boolean>(false);
 
   const query = useAutocomplete(input);
   const router = useRouter();
@@ -81,7 +80,6 @@ const Countries = () => {
             if (
               country.name.toLowerCase().startsWith(query.toLowerCase()) ===
               false
-              // country.name.toLowerCase().indexOf(query.toLowerCase()) === -1
             ) {
               return;
             }
