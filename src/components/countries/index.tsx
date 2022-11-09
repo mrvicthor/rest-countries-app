@@ -32,7 +32,7 @@ const Countries = ({ input, region }: CountriesProp) => {
   }
 
   return (
-    <div className="px-12 space-y-10 md:grid sm:grid-cols-2 sm:gap-10 sm:space-y-0 lg:grid-cols-4">
+    <div className="px-12 space-y-10 md:grid sm:grid-cols-2 sm:gap-10 gap-4 sm:space-y-0 lg:grid-cols-4">
       <>
         {loading && (
           <div className="text-center">
