@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../components/Layout";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import Border from "../../components/Border";
+import { Border } from "../../components";
 
 const DetailsPage = ({ country }: { country: any }) => {
   const { lightTheme } = useContext(ThemeContext);
@@ -214,8 +214,6 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const res = await fetch(`https://restcountries.com/v2/alpha/${params.id}`);

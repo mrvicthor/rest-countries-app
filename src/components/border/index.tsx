@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { ThemeContext } from "./Layout";
+import { ThemeContext } from "../Layout";
 import { useRouter } from "next/router";
 
 interface Props {

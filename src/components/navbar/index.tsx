@@ -1,7 +1,7 @@
 import { WiDaySunny } from "react-icons/wi";
 import { FaMoon } from "react-icons/fa";
 import { useContext } from "react";
-import { ThemeContext } from "./Layout";
+import { ThemeContext } from "../Layout";
 
 interface Props {
   toggleTheme: () => void;
