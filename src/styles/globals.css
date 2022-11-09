@@ -17,4 +17,7 @@
   .main {
     min-height: calc(100vh - 73px);
   }
+  .selected {
+    min-height: calc(100vh - 73px);
+  }
 }

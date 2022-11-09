@@ -29,7 +29,7 @@ const DetailsPage = ({ country }: { country: any }) => {
       <section
         className={`${
           !lightTheme ? "bg-[#202c37]" : "bg-[#fafafa]"
-        } h-[100%] pb-12 pt-12 px-8 sm:h-screen md:px-12 `}
+        } selected pb-12 pt-12 px-8 sm:h-screen md:px-12 `}
       >
         <Link href="/">
           <a
