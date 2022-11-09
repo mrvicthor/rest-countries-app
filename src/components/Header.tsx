@@ -44,9 +44,10 @@ const Header: React.FC<Props> = ({
 
           <div className="w-[200px] space-y-1">
             <div
+              onClick={() => setShowRegion(!showRegion)}
               className={`relative ${
                 !toggleTheme ? "bg-[#2b3945]" : "bg-white"
-              } w-[100%] px-5 py-4 rounded-md`}
+              } w-[100%] px-5 py-4 rounded-md hover:cursor-pointer`}
             >
               <p
                 className={` ${
@@ -56,7 +57,6 @@ const Header: React.FC<Props> = ({
                 Filter by Region
               </p>
               <RiArrowDropDownLine
-                onClick={() => setShowRegion(!showRegion)}
                 className={`absolute top-[50%] -translate-y-[50%] right-4 ${
                   !toggleTheme ? "text-white" : "text-[#111517]"
                 } cursor-pointer h-8 w-8 `}

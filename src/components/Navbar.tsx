@@ -28,27 +28,23 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
       <div>
         {!lightTheme ? (
           <div
+            onClick={() => toggleTheme()}
             className={`flex items-center gap-1 font-light ${
               !lightTheme ? "text-white" : "text-[#111517]"
-            }`}
+            } hover:cursor-pointer`}
           >
-            <FaMoon
-              className="hover:cursor-pointer"
-              onClick={() => toggleTheme()}
-            />
+            <FaMoon className="hover:cursor-pointer" />
             <span className="font-light">Dark Mode</span>
           </div>
         ) : (
           <div
+            onClick={() => toggleTheme()}
             className={`flex items-center gap-1 ${
               !lightTheme ? "text-white" : "text-[#111517]"
-            }`}
+            } hover:cursor-pointer`}
           >
             {" "}
-            <WiDaySunny
-              className="hover:cursor-pointer"
-              onClick={() => toggleTheme()}
-            />
+            <WiDaySunny className="hover:cursor-pointer" />
             <span className="font-light">Light Mode</span>
           </div>
         )}
