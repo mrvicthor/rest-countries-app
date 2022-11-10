@@ -1,14 +1,10 @@
 import { WiDaySunny } from "react-icons/wi";
 import { FaMoon } from "react-icons/fa";
 import { useContext } from "react";
-import { ThemeContext } from "../Layout";
+import { ThemeContext } from "../../context/DataContext";
 
-interface Props {
-  toggleTheme: () => void;
-}
-
-const Navbar: React.FC<Props> = ({ toggleTheme }) => {
-  const { lightTheme } = useContext(ThemeContext);
+const Navbar = () => {
+  const { toggleTheme, lightTheme } = useContext(ThemeContext);
 
   return (
     <nav

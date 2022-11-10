@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { ThemeContext } from "../Layout";
+import { ThemeContext } from "../../context/DataContext";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -31,7 +31,7 @@ const Border = ({ border }: Props) => {
       }
       className={` px-4 py-2 rounded opacity-70 ${
         !lightTheme ? "text-white bg-[#2b3945]" : "text-[#111517] bg-white"
-      } cursor-pointer`}
+      } cursor-pointer country`}
     >
       {country}
     </li>

@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Countries, Header } from "../components";
 import { useContext, useState } from "react";
-import { ThemeContext } from "./../components/Layout";
+import { ThemeContext } from "../context/DataContext";
 
 const Home: NextPage = () => {
-  const { lightTheme, loading, error, countries } = useContext(ThemeContext);
+  const { lightTheme } = useContext(ThemeContext);
   const [input, setInput] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   return (

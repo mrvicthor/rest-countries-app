@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { Loader, NotFound } from ".././index";
 import useAutocomplete from "../useAutocomplete";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
-import { ThemeContext } from "./../Layout";
+import { ThemeContext } from "./../../context/DataContext";
 
 type CountriesProp = {
   input: string;
@@ -14,6 +13,8 @@ const Countries = ({ input, region }: CountriesProp) => {
   const { lightTheme, countries, error, loading } = useContext(ThemeContext);
   const query = useAutocomplete(input);
   const router = useRouter();
+
+  console.log(lightTheme);
 
   let allCountries = countries;
   console.log(allCountries);
@@ -56,7 +57,7 @@ const Countries = ({ input, region }: CountriesProp) => {
             }
             className={` cursor-pointer ${
               !lightTheme ? "bg-[#2b3945]" : "bg-white"
-            } rounded-md hover:scale-[1.1] duration-700 ease-in-out`}
+            } rounded-md hover:scale-[1.1] duration-700 ease-in-out country`}
           >
             <img
               className="h-[12rem] w-[100%] rounded-t-md"
