@@ -33,8 +33,8 @@ const Navbar = ({ isDarkMode, toggle }: NavbarProps) => {
               !isDarkMode ? "text-white" : "text-[#111517]"
             } hover:cursor-pointer`}
           >
-            <FaMoon className="hover:cursor-pointer" />
-            <span className="font-light">Dark Mode</span>
+            <WiDaySunny className="hover:cursor-pointer" />
+            <span className="font-light">Light Mode</span>
           </div>
         ) : (
           <div
@@ -47,8 +47,8 @@ const Navbar = ({ isDarkMode, toggle }: NavbarProps) => {
             } hover:cursor-pointer`}
           >
             {" "}
-            <WiDaySunny className="hover:cursor-pointer" />
-            <span className="font-light">Light Mode</span>
+            <FaMoon className="hover:cursor-pointer" />
+            <span className="font-light">Dark Mode</span>
           </div>
         )}
       </div>
