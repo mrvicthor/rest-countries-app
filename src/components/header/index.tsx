@@ -58,7 +58,7 @@ const Header: React.FC<Props> = ({
             onClick={() => setShowRegion(!showRegion)}
             className={`relative ${
               !isDarkMode ? "bg-[#2b3945]" : "bg-white"
-            } w-[100%] px-5 py-4 rounded-md hover:cursor-pointer`}
+            } w-[100%] px-5 py-4 rounded-md hover:cursor-pointer myShadow`}
           >
             <p
               className={` ${
