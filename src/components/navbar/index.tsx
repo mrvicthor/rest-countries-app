@@ -1,32 +1,36 @@
 import { WiDaySunny } from "react-icons/wi";
 import { FaMoon } from "react-icons/fa";
-import { useContext } from "react";
-import { ThemeContext } from "../../context/DataContext";
 
-const Navbar = () => {
-  const { toggleTheme, lightTheme } = useContext(ThemeContext);
+type NavbarProps = {
+  isDarkMode: boolean;
+  toggle: () => void;
+};
 
+const Navbar = ({ isDarkMode, toggle }: NavbarProps) => {
   return (
     <nav
       className={`border-b ${
-        !lightTheme ? "border-b-[#141C2C" : ""
+        !isDarkMode ? "border-b-[#141C2C" : ""
       }  flex justify-between px-3 items-center py-6 ${
-        !lightTheme ? "bg-[#2b3945]" : "bg-white"
+        !isDarkMode ? "bg-[#2b3945]" : "bg-white"
       } md:px-12`}
     >
       <div
         className={`${
-          !lightTheme ? "text-white" : "text-[#111517]"
+          !isDarkMode ? "text-white" : "text-[#111517]"
         } font-semibold`}
       >
         Where in the world?
       </div>
       <div>
-        {!lightTheme ? (
+        {!isDarkMode ? (
           <div
-            onClick={() => toggleTheme()}
+            onClick={() => {
+              toggle();
+              console.log("clicked");
+            }}
             className={`flex items-center gap-1 font-light ${
-              !lightTheme ? "text-white" : "text-[#111517]"
+              !isDarkMode ? "text-white" : "text-[#111517]"
             } hover:cursor-pointer`}
           >
             <FaMoon className="hover:cursor-pointer" />
@@ -34,9 +38,12 @@ const Navbar = () => {
           </div>
         ) : (
           <div
-            onClick={() => toggleTheme()}
+            onClick={() => {
+              toggle();
+              console.log("clicked");
+            }}
             className={`flex items-center gap-1 ${
-              !lightTheme ? "text-white" : "text-[#111517]"
+              !isDarkMode ? "text-white" : "text-[#111517]"
             } hover:cursor-pointer`}
           >
             {" "}

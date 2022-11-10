@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Countries, Header } from "../components";
-import { useContext, useState } from "react";
-import { ThemeContext } from "../context/DataContext";
+import { useState } from "react";
+import { useDarkMode } from "usehooks-ts";
 
 const Home: NextPage = () => {
-  const { lightTheme } = useContext(ThemeContext);
+  const { isDarkMode } = useDarkMode();
   const [input, setInput] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   return (
@@ -18,13 +18,13 @@ const Home: NextPage = () => {
       <Header
         input={input}
         setInput={setInput}
-        lightTheme={lightTheme}
+        isDarkMode={isDarkMode}
         selectedRegion={selectedRegion}
         setSelectedRegion={setSelectedRegion}
       />
       <main
         className={`${
-          !lightTheme ? "bg-[#202c37]" : "bg-[#fafafa]"
+          !isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"
         } main pb-12`}
       >
         <Countries input={input} region={selectedRegion} />

@@ -1,15 +1,11 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../context/DataContext";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { Border } from "../../components";
+import { useDarkMode } from "usehooks-ts";
 
 const DetailsPage = ({ country }: { country: any }) => {
-  const { lightTheme } = useContext(ThemeContext);
-  //@ts-ignore
-  // let currentTheme = JSON.parse(window.localStorage.getItem("state"));
-  let currentTheme = lightTheme;
-  console.log(lightTheme);
+  const { isDarkMode } = useDarkMode();
 
   const {
     flags,
@@ -32,16 +28,16 @@ const DetailsPage = ({ country }: { country: any }) => {
     <>
       <section
         className={`${
-          !currentTheme ? "bg-[#202c37]" : "bg-[#fafafa]"
+          !isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"
         } selected pb-12 pt-12 px-8  md:px-12 `}
       >
         <Link href="/">
           <a
             className={`${
-              !currentTheme
+              !isDarkMode
                 ? "bg-[#2b3945] text-white"
                 : "bg-white text-[#111517]"
-            } flex items-center gap-3 px-5 py-2 w-[100px] cursor-pointer hover:opacity-60  rounded`}
+            } flex items-center gap-3 px-5 py-2 w-[100px] cursor-pointer hover:opacity-60 hover:scale-[1.1] duration-700 ease-in-out rounded`}
           >
             <HiOutlineArrowNarrowLeft /> Back
           </a>
@@ -49,7 +45,7 @@ const DetailsPage = ({ country }: { country: any }) => {
 
         <article
           className={`${
-            !currentTheme ? " text-white" : " text-[#111517]"
+            !isDarkMode ? " text-white" : " text-[#111517]"
           } mt-12 md:grid md:grid-cols-2 md:gap-20 lg:mx-auto `}
         >
           <div className="country">
@@ -113,7 +109,7 @@ const DetailsPage = ({ country }: { country: any }) => {
               <h3 className={`font-light  md:pt-4`}>Border Countries:</h3>
               <ul className={` flex gap-3 pt-4 overflow-hidden`}>
                 {closeBorders?.map((b: any, index: number) => (
-                  <Border border={b} key={index} />
+                  <Border border={b} key={index} isDarkMode={isDarkMode} />
                 ))}
               </ul>
             </div>

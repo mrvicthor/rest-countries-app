@@ -3,6 +3,7 @@ import { Loader, NotFound } from ".././index";
 import useAutocomplete from "../useAutocomplete";
 import { useRouter } from "next/router";
 import { ThemeContext } from "./../../context/DataContext";
+import { useDarkMode } from "usehooks-ts";
 
 type CountriesProp = {
   input: string;
@@ -10,11 +11,10 @@ type CountriesProp = {
 };
 
 const Countries = ({ input, region }: CountriesProp) => {
-  const { lightTheme, countries, error, loading } = useContext(ThemeContext);
+  const { isDarkMode } = useDarkMode();
+  const { countries, error, loading } = useContext(ThemeContext);
   const query = useAutocomplete(input);
   const router = useRouter();
-
-  console.log(lightTheme);
 
   let allCountries = countries;
   console.log(allCountries);
@@ -56,8 +56,8 @@ const Countries = ({ input, region }: CountriesProp) => {
               })
             }
             className={` cursor-pointer ${
-              !lightTheme ? "bg-[#2b3945]" : "bg-white"
-            } rounded-md hover:scale-[1.1] duration-700 ease-in-out country`}
+              !isDarkMode ? "bg-[#2b3945]" : "bg-white"
+            } rounded-md hover:scale-[1.1] duration-700 ease-in-out myShadow`}
           >
             <img
               className="h-[12rem] w-[100%] rounded-t-md"
@@ -66,7 +66,7 @@ const Countries = ({ input, region }: CountriesProp) => {
             <div className="py-6 space-y-4 px-6">
               <h2
                 className={`${
-                  !lightTheme ? "text-white" : "text-[#111517]"
+                  !isDarkMode ? "text-white" : "text-[#111517]"
                 } font-extrabold`}
               >
                 {country.name}
@@ -74,7 +74,7 @@ const Countries = ({ input, region }: CountriesProp) => {
               <div className="pb-3">
                 <h3
                   className={`${
-                    !lightTheme ? "text-white" : "text-[#111517]"
+                    !isDarkMode ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
                   Population:{" "}
@@ -84,7 +84,7 @@ const Countries = ({ input, region }: CountriesProp) => {
                 </h3>
                 <h3
                   className={`${
-                    !lightTheme ? "text-white" : "text-[#111517]"
+                    !isDarkMode ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
                   Region:{" "}
@@ -92,7 +92,7 @@ const Countries = ({ input, region }: CountriesProp) => {
                 </h3>
                 <h3
                   className={`${
-                    !lightTheme ? "text-white" : "text-[#111517]"
+                    !isDarkMode ? "text-white" : "text-[#111517]"
                   } font-semibold`}
                 >
                   Capital:{" "}

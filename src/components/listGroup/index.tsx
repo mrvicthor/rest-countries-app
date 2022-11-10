@@ -1,23 +1,18 @@
 interface Props {
-  toggleTheme: boolean;
+  isDarkMode: boolean;
   regions: any[];
   onSelect: (item: string) => void;
   setShowRegion: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ListGroup = ({
-  regions,
-  toggleTheme,
-  onSelect,
-  setShowRegion,
-}: Props) => {
+const ListGroup = ({ regions, isDarkMode, onSelect, setShowRegion }: Props) => {
   return (
     <ul
       className={`absolute w-[200px] z-[10] ${
-        !toggleTheme ? "bg-[#2b3945]" : "bg-white"
+        !isDarkMode ? "bg-[#2b3945]" : "bg-white"
       } px-4 rounded-md space-y-2 py-4 ${
-        !toggleTheme ? "text-white" : "text-[#111517]"
-      }`}
+        !isDarkMode ? "text-white" : "text-[#111517]"
+      } myShadow`}
     >
       {regions.map((region) => (
         <li

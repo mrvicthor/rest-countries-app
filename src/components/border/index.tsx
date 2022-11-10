@@ -1,16 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-import { ThemeContext } from "../../context/DataContext";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 interface Props {
   border: string;
+  isDarkMode: boolean;
 }
 
-const Border = ({ border }: Props) => {
+const Border = ({ border, isDarkMode }: Props) => {
   const router = useRouter();
   const [country, setCountry] = useState<string>("");
   const [selected, setSelected] = useState<string>("");
-  const { lightTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     const getBorder = async () => {
@@ -30,8 +29,8 @@ const Border = ({ border }: Props) => {
         })
       }
       className={` px-4 py-2 rounded opacity-70 ${
-        !lightTheme ? "text-white bg-[#2b3945]" : "text-[#111517] bg-white"
-      } cursor-pointer country`}
+        !isDarkMode ? "text-white bg-[#2b3945]" : "text-[#111517] bg-white"
+      } cursor-pointer hover:scale-[1.1] duration-700 ease-in-out myShadow`}
     >
       {country}
     </li>
