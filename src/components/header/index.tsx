@@ -30,14 +30,12 @@ const Header: React.FC<Props> = ({
     { id: 5, value: "Oceania" },
   ];
   return (
-    <div
-      className={`py-6 px-4 md:px-12 ${
-        !isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"
-      }`}
+    <section
+      className={`py-6 px-4 ${!isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"}`}
     >
-      <div className=" flex flex-col gap-10 md:flex-row md:justify-between">
+      <div className="lg:px-4 lg:max-w-6xl mx-auto flex flex-col gap-10 md:flex-row md:justify-between">
         <div
-          className={` flex items-center px-6 py-2 max-h-[55px] ${
+          className={`flex items-center px-6 py-2 max-h-[55px] ${
             !isDarkMode ? "bg-[#2b3945]" : "bg-white"
           } rounded-md md:w-[31.25rem] myShadow`}
         >
@@ -83,7 +81,7 @@ const Header: React.FC<Props> = ({
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

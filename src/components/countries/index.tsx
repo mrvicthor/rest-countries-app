@@ -4,6 +4,7 @@ import useAutocomplete from "../useAutocomplete";
 import { useRouter } from "next/router";
 import { ThemeContext } from "./../../context/DataContext";
 import { useDarkMode } from "usehooks-ts";
+import Image from "next/image";
 
 type CountriesProp = {
   input: string;
@@ -13,11 +14,12 @@ type CountriesProp = {
 const Countries = ({ input, region }: CountriesProp) => {
   const { isDarkMode } = useDarkMode();
   const { countries, error, loading } = useContext(ThemeContext);
+
   const query = useAutocomplete(input);
   const router = useRouter();
 
   let allCountries = countries;
-  console.log(allCountries);
+
   if (query) {
     allCountries = allCountries.filter((country) =>
       country.name.toLowerCase().startsWith(query.toLowerCase())
@@ -33,7 +35,7 @@ const Countries = ({ input, region }: CountriesProp) => {
   }
 
   return (
-    <div className="px-12 space-y-10 md:grid sm:grid-cols-2 sm:gap-10 md:gap-10 sm:space-y-0 lg:grid-cols-4">
+    <div className="px-3 lg:px-4 lg:max-w-6xl mx-auto gap-6 grid md:grid-cols-2 md:gap-10 lg:grid-cols-4">
       <>
         {loading && (
           <div className="text-center">
@@ -52,24 +54,30 @@ const Countries = ({ input, region }: CountriesProp) => {
             onClick={() =>
               router.push({
                 pathname: "/country/[countrytld]",
-                query: { countrytld: country.alpha2Code },
+                // query: { countrytld: country.ccn3 },
+                query: { countrytld: country.name.common },
               })
             }
             className={` cursor-pointer ${
               !isDarkMode ? "bg-[#2b3945]" : "bg-white"
             } rounded-md hover:scale-[1.1] duration-700 ease-in-out myShadow`}
           >
-            <img
-              className="h-[12rem] w-[100%] rounded-t-md"
-              src={country.flags.png}
-            />
+            <div className="relative">
+              <Image
+                alt={`${country.name.common} flag`}
+                width={800}
+                height={500}
+                className="rounded-t-md absolute object-cover"
+                src={country.flags.png}
+              />
+            </div>
             <div className="py-6 space-y-4 px-6">
               <h2
                 className={`${
                   !isDarkMode ? "text-white" : "text-[#111517]"
                 } font-extrabold`}
               >
-                {country.name}
+                {country.name.common}
               </h2>
               <div className="pb-3">
                 <h3

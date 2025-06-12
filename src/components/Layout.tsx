@@ -1,10 +1,15 @@
-// import { useState, createContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "../components";
 import { useDarkMode } from "usehooks-ts";
 
 const Layout = ({ children }: any) => {
   const { isDarkMode, toggle } = useDarkMode();
-  console.log(isDarkMode);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  if (!hasMounted) return null;
   return (
     <>
       <Navbar isDarkMode={isDarkMode} toggle={toggle} />

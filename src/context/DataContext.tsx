@@ -23,10 +23,13 @@ export function ThemeProvider({ children }: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://restcountries.com/v2/all");
+      const res = await fetch(
+        "https://restcountries.com/v3.1/independent?status=true"
+      );
       if (!res.ok) return setError(true);
       setLoading(true);
       const data = await res.json();
+
       setLoading(false);
       setError(false);
 

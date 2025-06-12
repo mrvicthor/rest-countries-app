@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { Border } from "../../components";
 import { useDarkMode } from "usehooks-ts";
+import Image from "next/image";
 
 const DetailsPage = ({ country }: { country: any }) => {
   const { isDarkMode } = useDarkMode();
@@ -14,23 +14,18 @@ const DetailsPage = ({ country }: { country: any }) => {
     region,
     subregion,
     capital,
-    topLevelDomain,
+    tld,
     borders,
     nativeName,
     currencies,
     languages,
-  } = country;
+  } = country[0];
 
-  let lastLang: any = languages[languages.length - 1];
   const closeBorders = borders?.slice(0, 3);
 
   return (
-    <>
-      <section
-        className={`${
-          !isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"
-        } selected pb-12 pt-12 px-8  md:px-12 `}
-      >
+    <section className={`${!isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"}`}>
+      <div className={`selected pb-12 pt-12 lg:px-4 lg:max-w-6xl mx-auto `}>
         <Link href="/">
           <a
             className={`${
@@ -49,14 +44,17 @@ const DetailsPage = ({ country }: { country: any }) => {
           } mt-12 md:grid md:grid-cols-2 md:gap-20 lg:mx-auto `}
         >
           <div className="country">
-            <img
+            <Image
+              alt={` flag`}
+              width={500}
+              height={380}
               className="h-[18rem] w-[100%] rounded-t-md md:rounded-none md:h-[22rem]"
-              src={flags.png}
+              src={flags[0]}
             />
           </div>
 
           <div className="space-y-6 pt-12 sm:pt-0 md:space-y-4">
-            <h2 className={`font-semibold  text-lg sm:mt-8`}>{name}</h2>
+            <h2 className={`font-semibold  text-lg sm:mt-8`}>{name.common}</h2>
             <div className={`md:flex md:justify-between`}>
               <div className="space-y-4">
                 <p className={`font-normal `}>
@@ -83,25 +81,19 @@ const DetailsPage = ({ country }: { country: any }) => {
               <div className="space-y-4 ">
                 <p className={`font-normal`}>
                   Top Level Domain:{" "}
-                  <span className={`font-light opacity-70`}>
-                    {topLevelDomain}
-                  </span>
+                  <span className={`font-light opacity-70`}>{tld}</span>
                 </p>
                 <p className={`font-normal `}>
                   Currencies:{" "}
                   <span className={`font-light  opacity-70`}>
-                    {currencies && currencies[0].name}
+                    {currencies && Object.keys(currencies)[0]}
                   </span>
                 </p>
                 <p className={`font-normal`}>
                   Languages:{" "}
-                  {languages?.map((language: any, index: number) => (
-                    <span key={index} className={`font-light px-1 opacity-70`}>
-                      {lastLang.name === language.name
-                        ? language.name
-                        : language.name + ","}
-                    </span>
-                  ))}
+                  <span className={`font-light px-1 opacity-70`}>
+                    {Object.values(languages)[0] + ","}
+                  </span>
                 </p>
               </div>
             </div>
@@ -115,25 +107,27 @@ const DetailsPage = ({ country }: { country: any }) => {
             </div>
           </div>
         </article>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
 export async function getStaticPaths() {
-  const res = await fetch(`https://restcountries.com/v2/all`);
+  const res = await fetch(
+    `https://restcountries.com/v3.1/independent?status=true`
+  );
   const results = await res.json();
 
   return {
     paths: results?.map((country: any) => {
-      return { params: { id: String(country.alpha2Code) } };
+      return { params: { id: String(country.name.common) } };
     }),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  const res = await fetch(`https://restcountries.com/v2/alpha/${params.id}`);
+  const res = await fetch(`https://restcountries.com/v3/name/${params.id}`);
 
   const country = await res.json();
 
