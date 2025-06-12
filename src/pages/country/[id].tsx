@@ -57,7 +57,7 @@ const DetailsPage = ({ country }: { country: any }) => {
             <h2 className={`font-semibold  text-lg sm:mt-8`}>{name.common}</h2>
             <div className={`md:flex md:justify-between`}>
               <div className="space-y-4">
-                <p className={`font-normal `}>
+                <p className={`font-normal`}>
                   Native Name:{" "}
                   <span className={`font-light opacity-70`}>{nativeName}</span>
                 </p>
@@ -92,7 +92,7 @@ const DetailsPage = ({ country }: { country: any }) => {
                 <p className={`font-normal`}>
                   Languages:{" "}
                   <span className={`font-light px-1 opacity-70`}>
-                    {Object.values(languages)[0] + ","}
+                    {Object.values(languages)[0] + ""}
                   </span>
                 </p>
               </div>

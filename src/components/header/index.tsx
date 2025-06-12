@@ -23,11 +23,12 @@ const Header: React.FC<Props> = ({
     setSelectedRegion(item);
   };
   let regions: any = [
-    { id: 1, value: "Africa" },
-    { id: 2, value: "Americas" },
-    { id: 3, value: "Asia" },
-    { id: 4, value: "Europe" },
-    { id: 5, value: "Oceania" },
+    { id: 1, value: "All" },
+    { id: 2, value: "Africa" },
+    { id: 3, value: "Americas" },
+    { id: 4, value: "Asia" },
+    { id: 5, value: "Europe" },
+    { id: 6, value: "Oceania" },
   ];
   return (
     <section
@@ -51,7 +52,7 @@ const Header: React.FC<Props> = ({
           />
         </div>
 
-        <div className="w-[200px] space-y-1">
+        <div className="w-[12.5rem] space-y-1">
           <div
             onClick={() => setShowRegion(!showRegion)}
             className={`relative ${

@@ -29,11 +29,10 @@ export function ThemeProvider({ children }: Props) {
       if (!res.ok) return setError(true);
       setLoading(true);
       const data = await res.json();
-
       setLoading(false);
       setError(false);
 
-      setCountries((prevData) => [...prevData, ...data]);
+      setCountries(data);
     };
     fetchData();
   }, []);

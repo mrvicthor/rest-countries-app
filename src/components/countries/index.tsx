@@ -18,21 +18,19 @@ const Countries = ({ input, region }: CountriesProp) => {
   const query = useAutocomplete(input);
   const router = useRouter();
 
-  let allCountries = countries;
+  const filteredCountries = query
+    ? countries.filter((country) =>
+        country.name.common.toLowerCase().startsWith(query.toLowerCase())
+      )
+    : countries;
 
-  if (query) {
-    allCountries = allCountries.filter((country) =>
-      country.name.toLowerCase().startsWith(query.toLowerCase())
-    );
-  }
-
-  if (input != "" && allCountries?.length == 0) {
+  if (input != "" && filteredCountries?.length == 0) {
     return <NotFound />;
   }
 
-  if (region) {
-    allCountries = allCountries.filter((country) => country.region === region);
-  }
+  const sortedCountries = region
+    ? filteredCountries.filter((country) => country.region === region)
+    : filteredCountries;
 
   return (
     <div className="px-3 lg:px-4 lg:max-w-6xl mx-auto gap-6 grid md:grid-cols-2 md:gap-10 lg:grid-cols-4">
@@ -48,13 +46,12 @@ const Countries = ({ input, region }: CountriesProp) => {
           </p>
         )}
 
-        {allCountries?.map((country, index) => (
+        {sortedCountries?.map((country, index) => (
           <div
             key={index}
             onClick={() =>
               router.push({
                 pathname: "/country/[countrytld]",
-                // query: { countrytld: country.ccn3 },
                 query: { countrytld: country.name.common },
               })
             }

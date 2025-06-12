@@ -9,7 +9,7 @@ const useAutocomplete = (value: string, delay: number = 1000) => {
     }, delay);
 
     return () => clearTimeout(timeoutRef);
-  }, [value]);
+  }, [value, delay]);
 
   return debounceVal;
 };
