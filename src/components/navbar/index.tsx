@@ -11,7 +11,7 @@ const Navbar = ({ isDarkMode, toggle }: NavbarProps) => {
     <header
       className={`${
         !isDarkMode ? "border-b-[#141C2C bg-[#2b3945]" : "bg-white"
-      } border-b `}
+      } border-b sticky top-0 w-full z-50`}
     >
       <nav
         className={`flex justify-between px-3 items-center py-6 lg:max-w-6xl mx-auto`}

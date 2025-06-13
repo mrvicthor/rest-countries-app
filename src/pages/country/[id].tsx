@@ -25,7 +25,7 @@ const DetailsPage = ({ country }: { country: any }) => {
 
   return (
     <section className={`${!isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"}`}>
-      <div className={`selected pb-12 pt-12 lg:px-4 lg:max-w-6xl mx-auto `}>
+      <div className={`selected pb-12 pt-12 px-4 lg:max-w-6xl mx-auto `}>
         <Link href="/">
           <a
             className={`${

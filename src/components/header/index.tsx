@@ -32,9 +32,9 @@ const Header: React.FC<Props> = ({
   ];
   return (
     <section
-      className={`py-6 px-4 ${!isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"}`}
+      className={`py-6 ${!isDarkMode ? "bg-[#202c37]" : "bg-[#fafafa]"}`}
     >
-      <div className="lg:px-4 lg:max-w-6xl mx-auto flex flex-col gap-10 md:flex-row md:justify-between">
+      <div className="px-4 lg:max-w-6xl mx-auto flex flex-col gap-10 md:flex-row md:justify-between">
         <div
           className={`flex items-center px-6 py-2 max-h-[55px] ${
             !isDarkMode ? "bg-[#2b3945]" : "bg-white"
